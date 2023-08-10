@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
-app.use(cors());
+
 app.use(express.json());
+app.use(cors());
 
 let tasks = [];
 
@@ -28,12 +29,6 @@ app.delete('/api/tasks/:id', (req, res) => {
   tasks = tasks.filter(task => task.id !== taskId);
   res.sendStatus(204);
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-const tasksRouter = require('./controller');
-app.use('/api', tasksRouter);
 
 app.listen(4000, () => console.log("Server running on 4000"));
 
